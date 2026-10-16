@@ -1,3 +1,5 @@
+<img src="docs/banner.svg" alt="OpenCV finger counter — webcam and hand landmark experiment" width="100%">
+
 # Webcam Finger Counter
 ### An early computer-vision experiment.
 

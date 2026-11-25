@@ -5,24 +5,27 @@
 
 A Python webcam demo intended to count raised fingers and display an annotated camera feed.
 
-**Status: incomplete source snapshot.** The entry script imports `Finger_counter` from `utils`, but that module is missing from this repository. The checked-in `requirement.txt` is empty, so the project is not runnable from a fresh clone.
+**Status:** runnable. Finger counting uses MediaPipe Hands landmarks in [utils.py](utils.py), which replaces the original module that was never committed.
 
-## What is present
+## Run it
 
-[Finger Counter.py](Finger%20Counter.py) opens camera device 0 with OpenCV, passes frames to `count_fingers()`, and displays the returned image.
+Use Python 3.9–3.12 (MediaPipe has no wheels for newer versions yet).
+
+```bash
+pip install -r requirements.txt
+python "Finger Counter.py"
+```
+
+[Finger Counter.py](Finger%20Counter.py) opens camera device 0, counts raised fingers on up to two hands, and shows the annotated feed.
 
 | Control | Action |
 | --- | --- |
 | `q` | Close the camera window |
 | `s` | Save the displayed frame as `hand_counted_<number>.jpg` |
 
-## What needs restoring
+## How counting works
 
-- The original `utils` module containing the finger-counting implementation.
-- A dependency list verified against that implementation.
-- A real demo recording and tested setup instructions.
-
-The entry script alone does not establish which hand-tracking library or algorithm the missing implementation uses. There is currently no demo image, packaged executable, or APK in the repository.
+A finger counts as raised when its tip landmark sits above the joint below it. The thumb is compared sideways instead, using the detected handedness.
 
 ## Project context
 
